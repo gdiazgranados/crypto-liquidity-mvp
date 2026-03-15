@@ -87,11 +87,12 @@ export default function Home() {
 <Image
 src="/logo.jpg"
 alt="PondRail"
-width={60}
-height={60}
+width={70}
+height={70}
+className="rounded-full shadow-lg"
 />
 
-<div className="text-xl font-bold">
+<div className="text-xl font-bold tracking-wide">
 PondRail
 </div>
 
