@@ -45,12 +45,21 @@ export default function Home() {
       badge: "MVP · Liquidity Rail for Pond0x",
       heroTitle: "Convert USDC / USDT / USD into MXN in minutes",
       heroSubtitle:
-        "A visual MVP for a crypto liquidity desk built for the Pond0x community, designed to move stablecoins into Mexican pesos via SPEI.",
-      primaryCta: "Request Quote",
+        "A crypto liquidity MVP built for the Pond0x community, designed to move stablecoins into Mexican pesos via SPEI.",
+      primaryCta: "Get Pond0x Quote",
       secondaryCta: "View Calculator",
       stat1: "Settlement target",
       stat2: "Estimated fees",
       stat3: "Bank rail",
+
+      exclusiveBadge: "Pond0x Exclusive MVP",
+      exclusiveTitle: "Built for the Pond0x community",
+      exclusiveText:
+        "PondRail is a visual MVP designed for Pond0x users who need a faster path from stablecoins into Mexican pesos, with a cleaner experience than traditional crypto off-ramps.",
+      exclusiveStat1: "Demo liquidity capacity",
+      exclusiveStat2: "Illustrative monthly operations",
+      exclusiveStat3: "Focused liquidity corridor",
+
       calcTitle: "Conversion Calculator",
       calcStatusLoading: "Loading live FX",
       calcStatusReady: "Live exchange rate",
@@ -62,6 +71,7 @@ export default function Home() {
       telegramBtn: "Request Quote on Telegram",
       calcDisclaimer:
         "Final quote depends on volume, network used, timing and settlement conditions. This MVP shows an estimated visual simulation.",
+
       valueEyebrow: "Value Proposition",
       valueTitle: "Simple for the user, useful for validating the business",
       valueText:
@@ -72,6 +82,7 @@ export default function Home() {
         "Personalized support for mid and large tickets",
         "Built as an MVP for freelancers, agencies and OTC desks",
       ],
+
       tiers: [
         {
           title: "$200–$2,000 USD",
@@ -89,6 +100,7 @@ export default function Home() {
           note: "OTC desk for larger tickets",
         },
       ],
+
       howEyebrow: "How it works",
       howTitle: "Three steps from crypto to MXN",
       howText:
@@ -110,6 +122,7 @@ export default function Home() {
           text: "The beneficiary receives Mexican pesos quickly and clearly.",
         },
       ],
+
       useCasesEyebrow: "Use Cases",
       useCasesTitle: "Who would use PondRail",
       useCases: [
@@ -118,6 +131,7 @@ export default function Home() {
         "Traders and OTC desks looking for liquidity in Mexico",
         "Recurring operations where time and spread matter",
       ],
+
       mvpEyebrow: "MVP Goal",
       mvpTitle: "Validate demand with a credible Web3-looking product",
       mvpCards: [
@@ -126,6 +140,7 @@ export default function Home() {
         { value: "< 20 min", label: "Settlement target per operation" },
         { value: "Lean OTC", label: "Small, simple and profitable operation" },
       ],
+
       contactEyebrow: "Contact",
       contactTitle: "Request a quote to convert USDC into MXN",
       contactText:
@@ -135,16 +150,26 @@ export default function Home() {
       footer:
         "Concept demo for a crypto → MXN liquidity service. Not a public offer or final financial product.",
     },
+
     ES: {
       badge: "MVP · Rail de Liquidez para Pond0x",
       heroTitle: "Convierte USDC / USDT / USD a MXN en minutos",
       heroSubtitle:
-        "Un MVP visual de una mesa de liquidez crypto pensada para la comunidad Pond0x, diseñada para mover stablecoins a pesos mexicanos vía SPEI.",
-      primaryCta: "Solicitar Cotización",
+        "Un MVP de liquidez crypto para la comunidad Pond0x, diseñado para mover stablecoins a pesos mexicanos vía SPEI.",
+      primaryCta: "Solicitar Cotización Pond0x",
       secondaryCta: "Ver Calculadora",
       stat1: "Meta de liquidación",
       stat2: "Comisiones estimadas",
       stat3: "Rail bancario",
+
+      exclusiveBadge: "MVP Exclusivo Pond0x",
+      exclusiveTitle: "Construido para la comunidad Pond0x",
+      exclusiveText:
+        "PondRail es un MVP visual diseñado para usuarios de Pond0x que necesitan una vía más rápida para convertir stablecoins a pesos mexicanos, con una experiencia más limpia que los off-ramps tradicionales.",
+      exclusiveStat1: "Capacidad demo de liquidez",
+      exclusiveStat2: "Operaciones mensuales ilustrativas",
+      exclusiveStat3: "Corredor de liquidez enfocado",
+
       calcTitle: "Calculadora de Conversión",
       calcStatusLoading: "Cargando FX en vivo",
       calcStatusReady: "Tipo de cambio en vivo",
@@ -156,6 +181,7 @@ export default function Home() {
       telegramBtn: "Solicitar cotización en Telegram",
       calcDisclaimer:
         "La cotización final depende del volumen, la red usada, el momento y las condiciones de liquidación. Este MVP muestra una simulación visual estimada.",
+
       valueEyebrow: "Propuesta de Valor",
       valueTitle: "Simple para el usuario, útil para validar el negocio",
       valueText:
@@ -166,6 +192,7 @@ export default function Home() {
         "Atención personalizada para tickets medianos y grandes",
         "Diseñado como MVP para freelancers, agencias y mesas OTC",
       ],
+
       tiers: [
         {
           title: "$200–$2,000 USD",
@@ -183,6 +210,7 @@ export default function Home() {
           note: "Mesa OTC para tickets grandes",
         },
       ],
+
       howEyebrow: "Cómo funciona",
       howTitle: "Tres pasos de crypto a MXN",
       howText:
@@ -204,6 +232,7 @@ export default function Home() {
           text: "El beneficiario recibe pesos mexicanos de forma rápida y clara.",
         },
       ],
+
       useCasesEyebrow: "Casos de Uso",
       useCasesTitle: "Quién usaría PondRail",
       useCases: [
@@ -212,6 +241,7 @@ export default function Home() {
         "Traders y mesas OTC que buscan liquidez en México",
         "Operaciones recurrentes donde importan el tiempo y el spread",
       ],
+
       mvpEyebrow: "Objetivo del MVP",
       mvpTitle: "Validar demanda con una imagen creíble y Web3",
       mvpCards: [
@@ -220,6 +250,7 @@ export default function Home() {
         { value: "< 20 min", label: "Meta de liquidación por operación" },
         { value: "OTC Lean", label: "Operación pequeña, simple y rentable" },
       ],
+
       contactEyebrow: "Contacto",
       contactTitle: "Solicita una cotización para convertir USDC a MXN",
       contactText:
@@ -237,6 +268,7 @@ export default function Home() {
     <main className="min-h-screen bg-slate-950 text-white">
       <section className="relative overflow-hidden border-b border-white/10">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.18),transparent_25%),radial-gradient(circle_at_bottom_left,rgba(16,185,129,0.16),transparent_28%),linear-gradient(to_bottom,rgba(15,23,42,0.95),rgba(2,6,23,1))]" />
+
         <div className="relative mx-auto max-w-7xl px-6 py-6 lg:px-10">
           <header className="flex items-center justify-between gap-4">
             <div className="flex items-center gap-4">
@@ -249,6 +281,7 @@ export default function Home() {
                   className="rounded-full"
                 />
               </div>
+
               <div>
                 <div className="text-xl font-semibold tracking-wide">PondRail</div>
                 <div className="text-sm text-slate-400">Powered by community liquidity</div>
@@ -266,6 +299,7 @@ export default function Home() {
               >
                 EN
               </button>
+
               <button
                 onClick={() => setLang("ES")}
                 className={`rounded-full px-4 py-2 text-sm font-medium transition ${
@@ -316,10 +350,12 @@ export default function Home() {
                   <div className="text-2xl font-semibold text-cyan-300">10–20 min</div>
                   <div className="mt-2 text-sm text-slate-300">{t.stat1}</div>
                 </div>
+
                 <div className="rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm">
                   <div className="text-2xl font-semibold text-emerald-300">0.7%–1.5%</div>
                   <div className="mt-2 text-sm text-slate-300">{t.stat2}</div>
                 </div>
+
                 <div className="rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm">
                   <div className="text-2xl font-semibold text-violet-300">SPEI</div>
                   <div className="mt-2 text-sm text-slate-300">{t.stat3}</div>
@@ -336,6 +372,7 @@ export default function Home() {
                   <p className="text-sm text-slate-400">PondRail</p>
                   <h2 className="text-2xl font-semibold">{t.calcTitle}</h2>
                 </div>
+
                 <div className="rounded-full bg-emerald-400/15 px-3 py-1 text-xs font-medium text-emerald-300">
                   {loading ? t.calcStatusLoading : t.calcStatusReady}
                 </div>
@@ -389,6 +426,35 @@ export default function Home() {
               </div>
 
               <p className="mt-4 text-xs leading-6 text-slate-400">{t.calcDisclaimer}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 py-16 lg:px-10">
+        <div className="rounded-[32px] border border-cyan-400/15 bg-gradient-to-br from-cyan-500/10 via-slate-900 to-emerald-500/10 p-8 text-center shadow-xl shadow-cyan-950/20">
+          <div className="mb-4 inline-flex rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-1.5 text-sm font-medium text-cyan-300">
+            {t.exclusiveBadge}
+          </div>
+
+          <h2 className="text-3xl font-semibold sm:text-4xl">{t.exclusiveTitle}</h2>
+
+          <p className="mx-auto mt-4 max-w-3xl text-slate-300">{t.exclusiveText}</p>
+
+          <div className="mt-10 grid gap-4 sm:grid-cols-3">
+            <div className="rounded-3xl border border-white/10 bg-black/20 p-6">
+              <div className="text-3xl font-semibold text-cyan-300">$240k+</div>
+              <div className="mt-2 text-sm text-slate-300">{t.exclusiveStat1}</div>
+            </div>
+
+            <div className="rounded-3xl border border-white/10 bg-black/20 p-6">
+              <div className="text-3xl font-semibold text-emerald-300">42</div>
+              <div className="mt-2 text-sm text-slate-300">{t.exclusiveStat2}</div>
+            </div>
+
+            <div className="rounded-3xl border border-white/10 bg-black/20 p-6">
+              <div className="text-3xl font-semibold text-violet-300">MX + US</div>
+              <div className="mt-2 text-sm text-slate-300">{t.exclusiveStat3}</div>
             </div>
           </div>
         </div>
@@ -517,6 +583,7 @@ export default function Home() {
             >
               {t.telegram}
             </a>
+
             <a
               href={`mailto:${t.email}`}
               className="rounded-2xl border border-white/15 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/5"
