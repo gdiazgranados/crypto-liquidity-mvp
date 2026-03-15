@@ -60,6 +60,26 @@ export default function Home() {
       exclusiveStat2: "Illustrative monthly operations",
       exclusiveStat3: "Focused liquidity corridor",
 
+      pondUsersEyebrow: "Pond0x Community",
+      pondUsersTitle: "Why Pond0x Users Choose PondRail",
+      pondUsersCards: [
+        {
+          icon: "⚡",
+          title: "Fast Liquidity",
+          text: "Move stablecoins into Mexican pesos quickly without traditional banking friction.",
+        },
+        {
+          icon: "🌎",
+          title: "US → Mexico Corridor",
+          text: "Designed for cross-border flows between U.S. crypto liquidity and MXN rails.",
+        },
+        {
+          icon: "🐷",
+          title: "Built for Pond0x",
+          text: "Focused on the Pond0x ecosystem and its growing crypto-native community.",
+        },
+      ],
+
       calcTitle: "Conversion Calculator",
       calcStatusLoading: "Loading live FX",
       calcStatusReady: "Live exchange rate",
@@ -83,6 +103,7 @@ export default function Home() {
         "Built as an MVP for freelancers, agencies and OTC desks",
       ],
 
+      tiersTitle: "Pricing Tiers",
       tiers: [
         {
           title: "$200–$2,000 USD",
@@ -170,6 +191,26 @@ export default function Home() {
       exclusiveStat2: "Operaciones mensuales ilustrativas",
       exclusiveStat3: "Corredor de liquidez enfocado",
 
+      pondUsersEyebrow: "Comunidad Pond0x",
+      pondUsersTitle: "Por qué los usuarios de Pond0x elegirían PondRail",
+      pondUsersCards: [
+        {
+          icon: "⚡",
+          title: "Liquidez Rápida",
+          text: "Mueve stablecoins a pesos mexicanos rápidamente sin la fricción bancaria tradicional.",
+        },
+        {
+          icon: "🌎",
+          title: "Corredor EE. UU. → México",
+          text: "Diseñado para flujos transfronterizos entre liquidez crypto en EE. UU. y rails en MXN.",
+        },
+        {
+          icon: "🐷",
+          title: "Construido para Pond0x",
+          text: "Enfocado en el ecosistema Pond0x y su creciente comunidad crypto-native.",
+        },
+      ],
+
       calcTitle: "Calculadora de Conversión",
       calcStatusLoading: "Cargando FX en vivo",
       calcStatusReady: "Tipo de cambio en vivo",
@@ -193,6 +234,7 @@ export default function Home() {
         "Diseñado como MVP para freelancers, agencias y mesas OTC",
       ],
 
+      tiersTitle: "Niveles de Precio",
       tiers: [
         {
           title: "$200–$2,000 USD",
@@ -278,7 +320,7 @@ export default function Home() {
                   alt="PondRail Logo"
                   width={68}
                   height={68}
-                  className="rounded-full"
+                  className="rounded-full animate-pulse"
                 />
               </div>
 
@@ -332,7 +374,7 @@ export default function Home() {
                   href="https://t.me/Guillermodiazg"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-2xl bg-cyan-400 px-6 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-cyan-500/20 transition hover:scale-[1.02]"
+                  className="rounded-2xl bg-cyan-400 px-6 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-cyan-500/20 transition hover:scale-105 hover:shadow-cyan-400/40"
                 >
                   {t.primaryCta}
                 </a>
@@ -461,6 +503,26 @@ export default function Home() {
       </section>
 
       <section className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
+        <div className="text-center mb-12">
+          <p className="text-cyan-300 text-sm mb-3">{t.pondUsersEyebrow}</p>
+          <h2 className="text-3xl font-bold">{t.pondUsersTitle}</h2>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-6">
+          {t.pondUsersCards.map((card) => (
+            <div
+              key={card.title}
+              className="bg-slate-900/70 border border-white/10 p-8 rounded-2xl hover:scale-105 transition"
+            >
+              <div className="text-4xl mb-4">{card.icon}</div>
+              <h3 className="font-semibold mb-2">{card.title}</h3>
+              <p className="text-sm opacity-70">{card.text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
         <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
           <div>
             <p className="text-sm font-medium uppercase tracking-[0.2em] text-cyan-300">
@@ -482,18 +544,24 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-3">
-            {t.tiers.map((tier) => (
-              <div
-                key={tier.title}
-                className="rounded-[24px] border border-white/10 bg-slate-900/70 p-5"
-              >
-                <div className="text-sm text-slate-400">Range</div>
-                <div className="mt-2 text-lg font-semibold">{tier.title}</div>
-                <div className="mt-5 text-3xl font-semibold text-cyan-300">{tier.fee}</div>
-                <div className="mt-2 text-sm leading-6 text-slate-300">{tier.note}</div>
-              </div>
-            ))}
+          <div>
+            <div className="mb-4 text-sm font-medium uppercase tracking-[0.2em] text-cyan-300">
+              {t.tiersTitle}
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-3">
+              {t.tiers.map((tier) => (
+                <div
+                  key={tier.title}
+                  className="rounded-[24px] border border-white/10 bg-slate-900/70 p-5"
+                >
+                  <div className="text-sm text-slate-400">Range</div>
+                  <div className="mt-2 text-lg font-semibold">{tier.title}</div>
+                  <div className="mt-5 text-3xl font-semibold text-cyan-300">{tier.fee}</div>
+                  <div className="mt-2 text-sm leading-6 text-slate-300">{tier.note}</div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
