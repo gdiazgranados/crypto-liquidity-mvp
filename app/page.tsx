@@ -423,6 +423,36 @@ export default function Home() {
 
   return (
     <main className="min-h-screen text-white bg-gradient-to-br from-slate-950 via-black to-slate-900">
+     <div className="border-b border-cyan-400/10 bg-cyan-400/5">
+  <div className="mx-auto max-w-7xl px-6 py-2">
+    <div className="flex flex-wrap items-center justify-center gap-6 text-xs text-slate-300 md:justify-between">
+      <div className="flex items-center gap-2">
+        <span className="text-cyan-300 font-medium">USD/MXN</span>
+        <span>{rate.toFixed(2)}</span>
+      </div>
+
+      <div className="flex items-center gap-2">
+        <span className="text-emerald-300 font-medium">USDC</span>
+        <span>Supported</span>
+      </div>
+
+      <div className="flex items-center gap-2">
+        <span className="text-violet-300 font-medium">USDT</span>
+        <span>Supported</span>
+      </div>
+
+      <div className="flex items-center gap-2">
+        <span className="text-amber-300 font-medium">Settlement</span>
+        <span>{settlement}</span>
+      </div>
+
+      <div className="flex items-center gap-2">
+        <span className="text-cyan-300 font-medium">Desk Mode</span>
+        <span>Pond0x Exclusive Access</span>
+      </div>
+    </div>
+  </div>
+</div>
       <header className="sticky top-0 z-50 backdrop-blur bg-black/40 border-b border-white/10">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
