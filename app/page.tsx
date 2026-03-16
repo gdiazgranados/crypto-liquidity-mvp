@@ -5,11 +5,11 @@ import Image from "next/image"
 
 export default function Home() {
   const [lang, setLang] = useState<"EN" | "ES">("EN")
-  const [usd, setUsd] = useState<number>(5000)
+  const [amount, setAmount] = useState<number>(5000)
   const [rate, setRate] = useState<number>(17)
   const [loading, setLoading] = useState<boolean>(true)
-
-  const feePct = 0.01
+  const [asset, setAsset] = useState<"USDC" | "USDT" | "USD">("USDC")
+  const [settlement, setSettlement] = useState<"SPEI" | "Cash" | "Operator">("SPEI")
 
   useEffect(() => {
     async function loadRate() {
@@ -29,43 +29,61 @@ export default function Home() {
     loadRate()
   }, [])
 
-  const { grossMxn, feeMxn, finalMxn } = useMemo(() => {
-    const gross = usd * rate
-    const fee = gross * feePct
-    const final = gross - fee
-    return {
-      grossMxn: gross,
-      feeMxn: fee,
-      finalMxn: final,
-    }
-  }, [usd, rate])
+  const feeConfig = useMemo(() => {
+    let baseFeePct = 0.015
 
-  const copy = {
+    if (amount >= 2000 && amount < 10000) baseFeePct = 0.01
+    if (amount >= 10000) baseFeePct = 0.007
+
+    const networkFeeMxn = asset === "USDT" ? 18 : asset === "USD" ? 0 : 8
+    const settlementFeeMxn = settlement === "SPEI" ? 12 : settlement === "Cash" ? 75 : 120
+
+    return { baseFeePct, networkFeeMxn, settlementFeeMxn }
+  }, [amount, asset, settlement])
+
+  const quote = useMemo(() => {
+    const grossMxn = amount * rate
+    const spreadFeeMxn = grossMxn * feeConfig.baseFeePct
+    const totalFeesMxn = spreadFeeMxn + feeConfig.networkFeeMxn + feeConfig.settlementFeeMxn
+    const finalMxn = Math.max(grossMxn - totalFeesMxn, 0)
+
+    return {
+      grossMxn,
+      spreadFeeMxn,
+      networkFeeMxn: feeConfig.networkFeeMxn,
+      settlementFeeMxn: feeConfig.settlementFeeMxn,
+      totalFeesMxn,
+      finalMxn,
+    }
+  }, [amount, rate, feeConfig])
+
+  const content = {
     EN: {
       navCalculator: "Calculator",
       navHow: "How it works",
+      navFaq: "FAQ",
       navContact: "Contact",
 
       badge: "MVP · Liquidity Rail for Pond0x",
-      heroTitle: "Convert USDC / USDT / USD into MXN in minutes",
+      heroTitle: "Convert stablecoins into MXN in minutes",
       heroSubtitle:
-        "A crypto liquidity MVP built for the Pond0x community, designed to move stablecoins into Mexican pesos via SPEI.",
+        "A community-first liquidity MVP for Pond0x users who need a faster path from USDC, USDT or USD into Mexican pesos via SPEI.",
       primaryCta: "Get Pond0x Quote",
       secondaryCta: "View Calculator",
       stat1: "Settlement target",
       stat2: "Estimated fees",
-      stat3: "Bank rail",
+      stat3: "Focused corridor",
 
       exclusiveBadge: "Pond0x Exclusive MVP",
       exclusiveTitle: "Built for the Pond0x community",
       exclusiveText:
-        "PondRail is a visual MVP designed for Pond0x users who need a faster path from stablecoins into Mexican pesos, with a cleaner experience than traditional crypto off-ramps.",
+        "PondRail is a visual MVP designed for Pond0x users who want a cleaner, faster and more community-native path into Mexican pesos.",
       exclusiveStat1: "Demo liquidity capacity",
       exclusiveStat2: "Illustrative monthly operations",
-      exclusiveStat3: "Focused liquidity corridor",
+      exclusiveStat3: "US ↔ MX corridor",
 
       pondUsersEyebrow: "Pond0x Community",
-      pondUsersTitle: "Why Pond0x Users Choose PondRail",
+      pondUsersTitle: "Why Pond0x users choose PondRail",
       pondUsersCards: [
         {
           icon: "⚡",
@@ -87,14 +105,30 @@ export default function Home() {
       calcTitle: "Conversion Calculator",
       calcStatusLoading: "Loading live FX",
       calcStatusReady: "Live exchange rate",
-      amountLabel: "Amount in USDC",
+      amountLabel: "Amount",
+      assetLabel: "Asset",
+      settlementLabel: "Settlement",
       rateLabel: "Exchange rate",
       grossLabel: "Gross conversion",
-      feeLabel: "Estimated fee (1%)",
+      spreadLabel: "Spread / desk fee",
+      networkLabel: "Network fee",
+      settlementCostLabel: "Settlement cost",
+      totalFeeLabel: "Total estimated fees",
       netLabel: "Estimated MXN received",
       telegramBtn: "Request Quote on Telegram",
       calcDisclaimer:
-        "Final quote depends on volume, network used, timing and settlement conditions. This MVP shows an estimated visual simulation.",
+        "Final quote depends on timing, amount, network and settlement method. This MVP displays an estimated simulation only.",
+
+      trustEyebrow: "Trust Layer",
+      trustTitle: "Lean OTC-style structure, not a bloated exchange",
+      trustText:
+        "The concept is positioned as a community-first liquidity desk focused on speed, clarity and controlled settlement for recurring crypto-native users.",
+      trustCards: [
+        "Selective clients, not mass retail",
+        "Focused on stablecoin → MXN conversion",
+        "Designed for fast SPEI settlement",
+        "Built as a lean OTC workflow",
+      ],
 
       valueEyebrow: "Value Proposition",
       valueTitle: "Simple for the user, useful for validating the business",
@@ -138,13 +172,13 @@ export default function Home() {
         },
         {
           step: "02",
-          title: "Conversion into MXN",
-          text: "The desk settles using stablecoins and banking rails to reduce friction.",
+          title: "PondRail prices the conversion",
+          text: "The desk estimates spread, network cost and settlement method in one clean quote.",
         },
         {
           step: "03",
-          title: "Receive MXN via SPEI",
-          text: "The beneficiary receives Mexican pesos quickly and clearly.",
+          title: "Receive MXN",
+          text: "Funds can be delivered through SPEI or future operator-assisted settlement flows.",
         },
       ],
 
@@ -167,17 +201,39 @@ export default function Home() {
       ],
 
       otcEyebrow: "Liquidity Desk",
-      otcTitle: "OTC Liquidity for Pond0x Users",
+      otcTitle: "OTC liquidity for Pond0x users",
       otcText:
         "PondRail operates as a lean OTC-style liquidity desk designed to help Pond0x users move stablecoins into Mexican pesos efficiently.",
       otcCards: ["🔒 Secure settlement", "⚡ Fast SPEI delivery", "🌎 Cross-border liquidity"],
 
+      faqEyebrow: "FAQ",
+      faqTitle: "Questions users will probably ask first",
+      faqs: [
+        {
+          q: "How fast is settlement?",
+          a: "The MVP targets fast settlement, with SPEI as the main delivery rail for MXN.",
+        },
+        {
+          q: "Which assets are supported?",
+          a: "The current concept supports USD, USDC and USDT as entry assets.",
+        },
+        {
+          q: "Who is this for?",
+          a: "Mainly Pond0x users, freelancers, agencies, traders and recurring crypto-native users who need MXN liquidity.",
+        },
+        {
+          q: "Is this a public exchange?",
+          a: "No. The positioning is closer to a lean, community-first OTC liquidity workflow.",
+        },
+      ],
+
       contactEyebrow: "Contact",
-      contactTitle: "Request a quote to convert USDC into MXN",
+      contactTitle: "Request a quote to convert stablecoins into MXN",
       contactText:
         "Built to present the concept to users, allies or potential partners. Visual, modern and ready to function as a real MVP.",
       telegram: "Telegram",
       email: "contacto@demo.com",
+      floatingCta: "Talk on Telegram",
       footer:
         "Concept demo for a crypto → MXN liquidity service. Not a public offer or final financial product.",
     },
@@ -185,25 +241,26 @@ export default function Home() {
     ES: {
       navCalculator: "Calculadora",
       navHow: "Cómo funciona",
+      navFaq: "FAQ",
       navContact: "Contacto",
 
       badge: "MVP · Rail de Liquidez para Pond0x",
-      heroTitle: "Convierte USDC / USDT / USD a MXN en minutos",
+      heroTitle: "Convierte stablecoins a MXN en minutos",
       heroSubtitle:
-        "Un MVP de liquidez crypto para la comunidad Pond0x, diseñado para mover stablecoins a pesos mexicanos vía SPEI.",
+        "Un MVP de liquidez enfocado en la comunidad Pond0x para mover USDC, USDT o USD a pesos mexicanos vía SPEI.",
       primaryCta: "Solicitar Cotización Pond0x",
       secondaryCta: "Ver Calculadora",
       stat1: "Meta de liquidación",
       stat2: "Comisiones estimadas",
-      stat3: "Rail bancario",
+      stat3: "Corredor enfocado",
 
       exclusiveBadge: "MVP Exclusivo Pond0x",
       exclusiveTitle: "Construido para la comunidad Pond0x",
       exclusiveText:
-        "PondRail es un MVP visual diseñado para usuarios de Pond0x que necesitan una vía más rápida para convertir stablecoins a pesos mexicanos, con una experiencia más limpia que los off-ramps tradicionales.",
+        "PondRail es un MVP visual diseñado para usuarios de Pond0x que quieren una vía más rápida, limpia y nativa para convertir stablecoins a pesos mexicanos.",
       exclusiveStat1: "Capacidad demo de liquidez",
       exclusiveStat2: "Operaciones mensuales ilustrativas",
-      exclusiveStat3: "Corredor de liquidez enfocado",
+      exclusiveStat3: "Corredor EE. UU. ↔ MX",
 
       pondUsersEyebrow: "Comunidad Pond0x",
       pondUsersTitle: "Por qué los usuarios de Pond0x elegirían PondRail",
@@ -228,14 +285,30 @@ export default function Home() {
       calcTitle: "Calculadora de Conversión",
       calcStatusLoading: "Cargando FX en vivo",
       calcStatusReady: "Tipo de cambio en vivo",
-      amountLabel: "Monto en USDC",
+      amountLabel: "Monto",
+      assetLabel: "Activo",
+      settlementLabel: "Liquidación",
       rateLabel: "Tipo de cambio",
       grossLabel: "Conversión bruta",
-      feeLabel: "Comisión estimada (1%)",
+      spreadLabel: "Spread / comisión de mesa",
+      networkLabel: "Comisión de red",
+      settlementCostLabel: "Costo de liquidación",
+      totalFeeLabel: "Comisiones totales estimadas",
       netLabel: "MXN estimado recibido",
       telegramBtn: "Solicitar cotización en Telegram",
       calcDisclaimer:
-        "La cotización final depende del volumen, la red usada, el momento y las condiciones de liquidación. Este MVP muestra una simulación visual estimada.",
+        "La cotización final depende del momento, monto, red y método de liquidación. Este MVP muestra solo una simulación estimada.",
+
+      trustEyebrow: "Capa de Confianza",
+      trustTitle: "Estructura lean estilo OTC, no un exchange inflado",
+      trustText:
+        "El concepto se posiciona como una mesa de liquidez community-first enfocada en velocidad, claridad y liquidación controlada para usuarios crypto-native recurrentes.",
+      trustCards: [
+        "Clientes selectivos, no retail masivo",
+        "Enfoque en conversión stablecoin → MXN",
+        "Diseñado para liquidación rápida vía SPEI",
+        "Construido como workflow OTC ligero",
+      ],
 
       valueEyebrow: "Propuesta de Valor",
       valueTitle: "Simple para el usuario, útil para validar el negocio",
@@ -279,13 +352,13 @@ export default function Home() {
         },
         {
           step: "02",
-          title: "Conversión a MXN",
-          text: "La mesa liquida usando stablecoins y rails bancarios para reducir fricción.",
+          title: "PondRail calcula la conversión",
+          text: "La mesa estima spread, costo de red y método de liquidación en una sola cotización clara.",
         },
         {
           step: "03",
-          title: "Recibes MXN vía SPEI",
-          text: "El beneficiario recibe pesos mexicanos de forma rápida y clara.",
+          title: "Recibes MXN",
+          text: "Los fondos pueden entregarse por SPEI o en futuros flujos asistidos por operadores.",
         },
       ],
 
@@ -313,69 +386,65 @@ export default function Home() {
         "PondRail opera como una mesa de liquidez estilo OTC, diseñada para ayudar a usuarios de Pond0x a mover stablecoins a pesos mexicanos de forma eficiente.",
       otcCards: ["🔒 Liquidación segura", "⚡ Entrega rápida vía SPEI", "🌎 Liquidez transfronteriza"],
 
+      faqEyebrow: "FAQ",
+      faqTitle: "Preguntas que un usuario haría primero",
+      faqs: [
+        {
+          q: "¿Qué tan rápida es la liquidación?",
+          a: "El MVP está pensado para liquidación rápida, usando SPEI como principal rail de entrega en MXN.",
+        },
+        {
+          q: "¿Qué activos se soportan?",
+          a: "El concepto actual soporta USD, USDC y USDT como activos de entrada.",
+        },
+        {
+          q: "¿Para quién está pensado?",
+          a: "Principalmente para usuarios de Pond0x, freelancers, agencias, traders y usuarios crypto-native con necesidad recurrente de liquidez en MXN.",
+        },
+        {
+          q: "¿Es un exchange público?",
+          a: "No. El posicionamiento se parece más a un workflow lean de liquidez estilo OTC y community-first.",
+        },
+      ],
+
       contactEyebrow: "Contacto",
-      contactTitle: "Solicita una cotización para convertir USDC a MXN",
+      contactTitle: "Solicita una cotización para convertir stablecoins a MXN",
       contactText:
         "Diseñado para presentar el concepto a usuarios, aliados o socios potenciales. Visual, moderno y listo para funcionar como MVP real.",
       telegram: "Telegram",
       email: "contacto@demo.com",
+      floatingCta: "Hablar en Telegram",
       footer:
         "Demo conceptual de un servicio de liquidez crypto → MXN. No constituye una oferta pública ni un producto financiero final.",
     },
   } as const
 
-  const t = copy[lang]
+  const t = content[lang]
 
   return (
     <main className="min-h-screen text-white bg-gradient-to-br from-slate-950 via-black to-slate-900">
       <header className="sticky top-0 z-50 backdrop-blur bg-black/40 border-b border-white/10">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <Image
-              src="/logo.jpg"
-              alt="PondRail"
-              width={40}
-              height={40}
-              className="rounded-full"
-            />
+            <Image src="/logo.jpg" alt="PondRail" width={40} height={40} className="rounded-full" />
             <div className="font-semibold">PondRail</div>
           </div>
 
-          <nav className="hidden md:flex gap-6 text-sm text-slate-300">
-            <a href="#calculator" className="hover:text-white">
-              {t.navCalculator}
-            </a>
-            <a href="#how" className="hover:text-white">
-              {t.navHow}
-            </a>
-            <a href="#contact" className="hover:text-white">
-              {t.navContact}
-            </a>
-          </nav>
-        </div>
-      </header>
-
-      <section className="relative overflow-hidden border-b border-white/10">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.18),transparent_25%),radial-gradient(circle_at_bottom_left,rgba(16,185,129,0.16),transparent_28%),linear-gradient(to_bottom,rgba(15,23,42,0.95),rgba(2,6,23,1))]" />
-
-        <div className="relative mx-auto max-w-7xl px-6 py-6 lg:px-10">
-          <div className="flex items-center justify-between gap-4">
-            <div className="flex items-center gap-4">
-              <div className="overflow-hidden rounded-full shadow-[0_0_40px_rgba(34,211,238,0.25)]">
-                <Image
-                  src="/logo.jpg"
-                  alt="PondRail Logo"
-                  width={68}
-                  height={68}
-                  className="rounded-full animate-pulse"
-                />
-              </div>
-
-              <div>
-                <div className="text-xl font-semibold tracking-wide">PondRail</div>
-                <div className="text-sm text-slate-400">Powered by community liquidity</div>
-              </div>
-            </div>
+          <div className="flex items-center gap-6">
+            <nav className="hidden md:flex gap-6 text-sm text-slate-300">
+              <a href="#calculator" className="hover:text-white">
+                {t.navCalculator}
+              </a>
+              <a href="#how" className="hover:text-white">
+                {t.navHow}
+              </a>
+              <a href="#faq" className="hover:text-white">
+                {t.navFaq}
+              </a>
+              <a href="#contact" className="hover:text-white">
+                {t.navContact}
+              </a>
+            </nav>
 
             <div className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 p-1">
               <button
@@ -388,7 +457,6 @@ export default function Home() {
               >
                 EN
               </button>
-
               <button
                 onClick={() => setLang("ES")}
                 className={`rounded-full px-4 py-2 text-sm font-medium transition ${
@@ -401,7 +469,13 @@ export default function Home() {
               </button>
             </div>
           </div>
+        </div>
+      </header>
 
+      <section className="relative overflow-hidden border-b border-white/10">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.18),transparent_25%),radial-gradient(circle_at_bottom_left,rgba(16,185,129,0.16),transparent_28%),linear-gradient(to_bottom,rgba(15,23,42,0.95),rgba(2,6,23,1))]" />
+
+        <div className="relative mx-auto max-w-7xl px-6 py-6 lg:px-10">
           <div className="grid gap-12 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:py-20">
             <div>
               <div className="mb-5 inline-flex items-center rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-1.5 text-sm text-cyan-200">
@@ -412,9 +486,7 @@ export default function Home() {
                 {t.heroTitle}
               </h1>
 
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
-                {t.heroSubtitle}
-              </p>
+              <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">{t.heroSubtitle}</p>
 
               <div className="mt-8 flex flex-wrap gap-4">
                 <a
@@ -446,7 +518,7 @@ export default function Home() {
                 </div>
 
                 <div className="rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm">
-                  <div className="text-2xl font-semibold text-violet-300">SPEI</div>
+                  <div className="text-2xl font-semibold text-violet-300">US ↔ MX</div>
                   <div className="mt-2 text-sm text-slate-300">{t.stat3}</div>
                 </div>
               </div>
@@ -468,16 +540,55 @@ export default function Home() {
               </div>
 
               <div className="space-y-5 rounded-[24px] bg-slate-900/80 p-5">
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <div>
+                    <label className="mb-2 block text-sm text-slate-400">{t.amountLabel}</label>
+                    <input
+                      type="number"
+                      min="0"
+                      value={amount}
+                      onChange={(e) => setAmount(Number(e.target.value) || 0)}
+                      className="w-full rounded-2xl border border-white/10 bg-slate-950 px-4 py-3 text-lg text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-400/40"
+                      placeholder="5000"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="mb-2 block text-sm text-slate-400">{t.assetLabel}</label>
+                    <select
+                      value={asset}
+                      onChange={(e) => setAsset(e.target.value as "USDC" | "USDT" | "USD")}
+                      className="w-full rounded-2xl border border-white/10 bg-slate-950 px-4 py-3 text-white outline-none"
+                    >
+                      <option value="USDC">USDC</option>
+                      <option value="USDT">USDT</option>
+                      <option value="USD">USD</option>
+                    </select>
+                  </div>
+                </div>
+
                 <div>
-                  <label className="mb-2 block text-sm text-slate-400">{t.amountLabel}</label>
-                  <input
-                    type="number"
-                    min="0"
-                    value={usd}
-                    onChange={(e) => setUsd(Number(e.target.value) || 0)}
-                    className="w-full rounded-2xl border border-white/10 bg-slate-950 px-4 py-3 text-lg text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-400/40"
-                    placeholder="5000"
-                  />
+                  <label className="mb-2 block text-sm text-slate-400">{t.settlementLabel}</label>
+                  <div className="grid grid-cols-3 gap-3">
+                    {[
+                      { value: "SPEI", label: "SPEI" },
+                      { value: "Cash", label: "Cash" },
+                      { value: "Operator", label: "Operator" },
+                    ].map((item) => (
+                      <button
+                        key={item.value}
+                        type="button"
+                        onClick={() => setSettlement(item.value as "SPEI" | "Cash" | "Operator")}
+                        className={`rounded-2xl border px-4 py-3 text-sm transition ${
+                          settlement === item.value
+                            ? "border-cyan-400 bg-cyan-400/10 text-cyan-300"
+                            : "border-white/10 bg-white/[0.03] text-slate-300"
+                        }`}
+                      >
+                        {item.label}
+                      </button>
+                    ))}
+                  </div>
                 </div>
 
                 <div className="grid gap-3">
@@ -488,19 +599,34 @@ export default function Home() {
 
                   <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm">
                     <span className="text-slate-400">{t.grossLabel}</span>
-                    <span className="font-medium">{grossMxn.toFixed(2)} MXN</span>
+                    <span className="font-medium">{quote.grossMxn.toFixed(2)} MXN</span>
                   </div>
 
                   <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm">
-                    <span className="text-slate-400">{t.feeLabel}</span>
-                    <span className="font-medium text-amber-300">{feeMxn.toFixed(2)} MXN</span>
+                    <span className="text-slate-400">{t.spreadLabel}</span>
+                    <span className="font-medium text-amber-300">{quote.spreadFeeMxn.toFixed(2)} MXN</span>
+                  </div>
+
+                  <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm">
+                    <span className="text-slate-400">{t.networkLabel}</span>
+                    <span className="font-medium text-amber-300">{quote.networkFeeMxn.toFixed(2)} MXN</span>
+                  </div>
+
+                  <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm">
+                    <span className="text-slate-400">{t.settlementCostLabel}</span>
+                    <span className="font-medium text-amber-300">{quote.settlementFeeMxn.toFixed(2)} MXN</span>
+                  </div>
+
+                  <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm">
+                    <span className="text-slate-400">{t.totalFeeLabel}</span>
+                    <span className="font-medium text-amber-300">{quote.totalFeesMxn.toFixed(2)} MXN</span>
                   </div>
                 </div>
 
                 <div className="rounded-3xl border border-emerald-400/20 bg-emerald-400/10 p-5">
                   <div className="text-sm text-emerald-200">{t.netLabel}</div>
                   <div className="mt-2 text-3xl font-semibold text-emerald-300">
-                    {finalMxn.toFixed(2)} MXN
+                    {quote.finalMxn.toFixed(2)} MXN
                   </div>
                 </div>
 
@@ -542,7 +668,7 @@ export default function Home() {
             </div>
 
             <div className="rounded-3xl border border-white/10 bg-black/20 p-6">
-              <div className="text-3xl font-semibold text-violet-300">MX + US</div>
+              <div className="text-3xl font-semibold text-violet-300">US ↔ MX</div>
               <div className="mt-2 text-sm text-slate-300">{t.exclusiveStat3}</div>
             </div>
           </div>
@@ -566,6 +692,22 @@ export default function Home() {
               <p className="text-sm opacity-70">{card.text}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
+        <div className="rounded-[28px] border border-white/10 bg-white/5 p-7">
+          <p className="text-sm font-medium uppercase tracking-[0.2em] text-cyan-300">{t.trustEyebrow}</p>
+          <h2 className="mt-3 text-3xl font-semibold">{t.trustTitle}</h2>
+          <p className="mt-4 max-w-3xl text-slate-300">{t.trustText}</p>
+
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {t.trustCards.map((item) => (
+              <div key={item} className="rounded-2xl border border-white/10 bg-slate-900/70 p-5 text-sm text-slate-300">
+                {item}
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -695,6 +837,24 @@ export default function Home() {
         </div>
       </section>
 
+      <section id="faq" className="border-y border-white/10 bg-white/[0.03]">
+        <div className="mx-auto max-w-5xl px-6 py-20 lg:px-10">
+          <div className="text-center mb-12">
+            <p className="text-cyan-300 text-sm mb-3">{t.faqEyebrow}</p>
+            <h2 className="text-3xl font-bold">{t.faqTitle}</h2>
+          </div>
+
+          <div className="grid gap-4">
+            {t.faqs.map((item) => (
+              <div key={item.q} className="rounded-2xl border border-white/10 bg-slate-900/70 p-6">
+                <h3 className="text-lg font-semibold">{item.q}</h3>
+                <p className="mt-3 text-sm leading-7 text-slate-300">{item.a}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section id="contact" className="border-t border-white/10 bg-slate-900/80">
         <div className="mx-auto max-w-4xl px-6 py-20 text-center lg:px-10">
           <p className="text-sm font-medium uppercase tracking-[0.2em] text-cyan-300">
@@ -724,6 +884,15 @@ export default function Home() {
           <p className="mt-6 text-xs leading-6 text-slate-500">{t.footer}</p>
         </div>
       </section>
+
+      <a
+        href="https://t.me/Guillermodiazg"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 z-50 rounded-full bg-cyan-400 px-5 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-cyan-500/30 transition hover:scale-105"
+      >
+        {t.floatingCta}
+      </a>
     </main>
   )
 }
