@@ -227,6 +227,11 @@ export default function Home() {
         },
       ],
 
+      roadmapEyebrow: "Roadmap",
+      roadmapTitle: "Building the Mexico Crypto Liquidity Rail",
+      roadmapText:
+        "PondRail starts as a lean MVP for Pond0x users and evolves toward a full cross-border liquidity infrastructure between crypto markets and Mexican pesos.",
+
       contactEyebrow: "Contact",
       contactTitle: "Request a quote to convert stablecoins into MXN",
       contactText:
@@ -407,6 +412,11 @@ export default function Home() {
         },
       ],
 
+      roadmapEyebrow: "Roadmap",
+      roadmapTitle: "Construyendo el rail de liquidez crypto hacia MXN",
+      roadmapText:
+        "PondRail comienza como un MVP lean para usuarios de Pond0x y evoluciona hacia una infraestructura completa de liquidez transfronteriza entre mercados crypto y pesos mexicanos.",
+
       contactEyebrow: "Contacto",
       contactTitle: "Solicita una cotización para convertir stablecoins a MXN",
       contactText:
@@ -423,36 +433,37 @@ export default function Home() {
 
   return (
     <main className="min-h-screen text-white bg-gradient-to-br from-slate-950 via-black to-slate-900">
-     <div className="border-b border-cyan-400/10 bg-cyan-400/5">
-  <div className="mx-auto max-w-7xl px-6 py-2">
-    <div className="flex flex-wrap items-center justify-center gap-6 text-xs text-slate-300 md:justify-between">
-      <div className="flex items-center gap-2">
-        <span className="text-cyan-300 font-medium">USD/MXN</span>
-        <span>{rate.toFixed(2)}</span>
+      <div className="border-b border-cyan-400/10 bg-cyan-400/5">
+        <div className="mx-auto max-w-7xl px-6 py-2">
+          <div className="flex flex-wrap items-center justify-center gap-6 text-xs text-slate-300 md:justify-between">
+            <div className="flex items-center gap-2">
+              <span className="text-cyan-300 font-medium">USD/MXN</span>
+              <span>{rate.toFixed(2)}</span>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <span className="text-emerald-300 font-medium">USDC</span>
+              <span>Supported</span>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <span className="text-violet-300 font-medium">USDT</span>
+              <span>Supported</span>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <span className="text-amber-300 font-medium">Settlement</span>
+              <span>{settlement}</span>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <span className="text-cyan-300 font-medium">Desk Mode</span>
+              <span>Pond0x OTC MVP</span>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div className="flex items-center gap-2">
-        <span className="text-emerald-300 font-medium">USDC</span>
-        <span>Supported</span>
-      </div>
-
-      <div className="flex items-center gap-2">
-        <span className="text-violet-300 font-medium">USDT</span>
-        <span>Supported</span>
-      </div>
-
-      <div className="flex items-center gap-2">
-        <span className="text-amber-300 font-medium">Settlement</span>
-        <span>{settlement}</span>
-      </div>
-
-      <div className="flex items-center gap-2">
-        <span className="text-cyan-300 font-medium">Desk Mode</span>
-        <span>Pond0x Exclusive Access</span>
-      </div>
-    </div>
-  </div>
-</div>
       <header className="sticky top-0 z-50 backdrop-blur bg-black/40 border-b border-white/10">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -506,31 +517,32 @@ export default function Home() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.18),transparent_25%),radial-gradient(circle_at_bottom_left,rgba(16,185,129,0.16),transparent_28%),linear-gradient(to_bottom,rgba(15,23,42,0.95),rgba(2,6,23,1))]" />
 
         <div className="relative mx-auto max-w-7xl px-6 py-6 lg:px-10">
-               <div className="grid gap-4 py-8 sm:grid-cols-2 lg:grid-cols-4">
-  <div className="rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm">
-    <div className="text-sm text-slate-400">Liquidity Routed</div>
-    <div className="mt-2 text-2xl font-semibold text-cyan-300">$240k+</div>
-    <div className="mt-1 text-xs text-slate-500">Illustrative monthly capacity</div>
-  </div>
+          <div className="grid gap-4 py-8 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm">
+              <div className="text-sm text-slate-400">Liquidity Routed</div>
+              <div className="mt-2 text-2xl font-semibold text-cyan-300">$240k+</div>
+              <div className="mt-1 text-xs text-slate-500">Illustrative monthly capacity</div>
+            </div>
 
-  <div className="rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm">
-    <div className="text-sm text-slate-400">Avg Settlement</div>
-    <div className="mt-2 text-2xl font-semibold text-emerald-300">10–20 min</div>
-    <div className="mt-1 text-xs text-slate-500">Target for SPEI delivery</div>
-  </div>
+            <div className="rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm">
+              <div className="text-sm text-slate-400">Avg Settlement</div>
+              <div className="mt-2 text-2xl font-semibold text-emerald-300">10–20 min</div>
+              <div className="mt-1 text-xs text-slate-500">Target for SPEI delivery</div>
+            </div>
 
-  <div className="rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm">
-    <div className="text-sm text-slate-400">Supported Assets</div>
-    <div className="mt-2 text-2xl font-semibold text-violet-300">USD / USDC / USDT</div>
-    <div className="mt-1 text-xs text-slate-500">Stablecoin-first settlement</div>
-  </div>
+            <div className="rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm">
+              <div className="text-sm text-slate-400">Supported Assets</div>
+              <div className="mt-2 text-2xl font-semibold text-violet-300">USD / USDC / USDT</div>
+              <div className="mt-1 text-xs text-slate-500">Stablecoin-first settlement</div>
+            </div>
 
-  <div className="rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm">
-    <div className="text-sm text-slate-400">Active Corridor</div>
-    <div className="mt-2 text-2xl font-semibold text-amber-300">US ↔ MX</div>
-    <div className="mt-1 text-xs text-slate-500">Pond0x-focused liquidity rail</div>
-  </div>
-</div>
+            <div className="rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm">
+              <div className="text-sm text-slate-400">Active Corridor</div>
+              <div className="mt-2 text-2xl font-semibold text-amber-300">US ↔ MX</div>
+              <div className="mt-1 text-xs text-slate-500">Pond0x-focused liquidity rail</div>
+            </div>
+          </div>
+
           <div className="grid gap-12 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:py-20">
             <div>
               <div className="mb-5 inline-flex items-center rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-1.5 text-sm text-cyan-200">
@@ -560,29 +572,40 @@ export default function Home() {
                   {t.secondaryCta}
                 </a>
               </div>
-
-              <div className="mt-10 grid max-w-3xl gap-4 sm:grid-cols-3">
-                <div className="rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm">
-                  <div className="text-2xl font-semibold text-cyan-300">10–20 min</div>
-                  <div className="mt-2 text-sm text-slate-300">{t.stat1}</div>
-                </div>
-
-                <div className="rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm">
-                  <div className="text-2xl font-semibold text-emerald-300">0.7%–1.5%</div>
-                  <div className="mt-2 text-sm text-slate-300">{t.stat2}</div>
-                </div>
-
-                <div className="rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm">
-                  <div className="text-2xl font-semibold text-violet-300">US ↔ MX</div>
-                  <div className="mt-2 text-sm text-slate-300">{t.stat3}</div>
-                </div>
-              </div>
             </div>
 
             <div
               id="calculator"
               className="rounded-[28px] border border-white/10 bg-white/5 p-6 shadow-2xl shadow-cyan-950/30 backdrop-blur-md"
             >
+              <div className="mb-5 rounded-3xl border border-cyan-400/15 bg-cyan-400/5 p-4">
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <div>
+                    <div className="text-xs uppercase tracking-[0.2em] text-cyan-300">
+                      Live Quote Preview
+                    </div>
+                    <div className="mt-1 text-sm text-slate-300">
+                      Simulated OTC quote for Pond0x users
+                    </div>
+                  </div>
+
+                  <div className="flex flex-wrap gap-2">
+                    <span className="rounded-full border border-emerald-400/20 bg-emerald-400/10 px-3 py-1 text-xs font-medium text-emerald-300">
+                      quoted
+                    </span>
+                    <span className="rounded-full border border-amber-400/20 bg-amber-400/10 px-3 py-1 text-xs font-medium text-amber-300">
+                      pending settlement
+                    </span>
+                    <span className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-xs font-medium text-cyan-300">
+                      {asset}
+                    </span>
+                    <span className="rounded-full border border-violet-400/20 bg-violet-400/10 px-3 py-1 text-xs font-medium text-violet-300">
+                      {settlement}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
               <div className="mb-5 flex items-center justify-between gap-4">
                 <div>
                   <p className="text-sm text-slate-400">PondRail</p>
@@ -909,61 +932,71 @@ export default function Home() {
           </div>
         </div>
       </section>
+
       <section className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
-  <div className="text-center mb-14">
-    <p className="text-cyan-300 text-sm mb-3 uppercase tracking-widest">
-      Roadmap
-    </p>
-    <h2 className="text-3xl font-bold">
-      Building the Mexico Crypto Liquidity Rail
-    </h2>
-    <p className="text-slate-300 mt-4 max-w-2xl mx-auto">
-      PondRail begins as a lean MVP focused on Pond0x users and evolves
-      toward a full cross-border liquidity infrastructure between crypto
-      markets and Mexican pesos.
-    </p>
-  </div>
+        <div className="text-center mb-14">
+          <p className="text-cyan-300 text-sm mb-3 uppercase tracking-widest">
+            {t.roadmapEyebrow}
+          </p>
+          <h2 className="text-3xl font-bold">{t.roadmapTitle}</h2>
+          <p className="text-slate-300 mt-4 max-w-2xl mx-auto">{t.roadmapText}</p>
+        </div>
 
-  <div className="grid md:grid-cols-4 gap-6">
+        <div className="relative mb-10 hidden md:block">
+          <div className="absolute left-0 right-0 top-5 h-[2px] bg-white/10" />
+          <div className="absolute left-0 top-5 h-[2px] w-1/4 bg-cyan-400" />
+        </div>
 
-    <div className="bg-slate-900 border border-white/10 rounded-xl p-6">
-      <div className="text-cyan-300 font-semibold mb-2">Phase 1</div>
-      <h3 className="font-bold mb-3">MVP Launch</h3>
-      <p className="text-sm text-slate-300">
-        Landing page, calculator, community onboarding and validation of
-        demand within the Pond0x ecosystem.
-      </p>
-    </div>
+        <div className="grid gap-6 md:grid-cols-4">
+          <div className="relative rounded-2xl border border-cyan-400/20 bg-cyan-400/10 p-6 shadow-lg shadow-cyan-950/20">
+            <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-cyan-400 text-sm font-bold text-slate-950">
+              1
+            </div>
+            <div className="text-cyan-300 text-sm font-semibold mb-2">Phase 1</div>
+            <h3 className="font-bold mb-3">MVP Launch</h3>
+            <p className="text-sm text-slate-300">
+              Landing page, quote simulator, community onboarding and validation of demand inside the Pond0x ecosystem.
+            </p>
+            <div className="mt-4 inline-flex rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-xs font-medium text-cyan-300">
+              current phase
+            </div>
+          </div>
 
-    <div className="bg-slate-900 border border-white/10 rounded-xl p-6">
-      <div className="text-cyan-300 font-semibold mb-2">Phase 2</div>
-      <h3 className="font-bold mb-3">Recurring Liquidity</h3>
-      <p className="text-sm text-slate-300">
-        Build recurring operations with freelancers, agencies and OTC
-        traders needing stablecoin → MXN settlement.
-      </p>
-    </div>
+          <div className="rounded-2xl border border-white/10 bg-slate-900/70 p-6">
+            <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-sm font-bold text-white">
+              2
+            </div>
+            <div className="text-cyan-300 text-sm font-semibold mb-2">Phase 2</div>
+            <h3 className="font-bold mb-3">Recurring Liquidity</h3>
+            <p className="text-sm text-slate-300">
+              Build recurring operations with freelancers, agencies and OTC traders needing stablecoin → MXN settlement.
+            </p>
+          </div>
 
-    <div className="bg-slate-900 border border-white/10 rounded-xl p-6">
-      <div className="text-cyan-300 font-semibold mb-2">Phase 3</div>
-      <h3 className="font-bold mb-3">MXN Corridor</h3>
-      <p className="text-sm text-slate-300">
-        Expand the liquidity rail between US crypto markets and Mexican
-        banking rails through SPEI.
-      </p>
-    </div>
+          <div className="rounded-2xl border border-white/10 bg-slate-900/70 p-6">
+            <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-sm font-bold text-white">
+              3
+            </div>
+            <div className="text-cyan-300 text-sm font-semibold mb-2">Phase 3</div>
+            <h3 className="font-bold mb-3">MXN Corridor</h3>
+            <p className="text-sm text-slate-300">
+              Expand the liquidity rail between U.S. crypto markets and Mexican banking rails through SPEI.
+            </p>
+          </div>
 
-    <div className="bg-slate-900 border border-white/10 rounded-xl p-6">
-      <div className="text-cyan-300 font-semibold mb-2">Phase 4</div>
-      <h3 className="font-bold mb-3">Operator Settlement</h3>
-      <p className="text-sm text-slate-300">
-        Enable larger OTC settlement flows and operator-assisted
-        liquidity for higher volume clients.
-      </p>
-    </div>
+          <div className="rounded-2xl border border-white/10 bg-slate-900/70 p-6">
+            <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-sm font-bold text-white">
+              4
+            </div>
+            <div className="text-cyan-300 text-sm font-semibold mb-2">Phase 4</div>
+            <h3 className="font-bold mb-3">Operator Settlement</h3>
+            <p className="text-sm text-slate-300">
+              Enable larger OTC flows and operator-assisted liquidity for higher volume clients and more flexible delivery methods.
+            </p>
+          </div>
+        </div>
+      </section>
 
-  </div>
-</section>
       <section id="contact" className="border-t border-white/10 bg-slate-900/80">
         <div className="mx-auto max-w-4xl px-6 py-20 text-center lg:px-10">
           <p className="text-sm font-medium uppercase tracking-[0.2em] text-cyan-300">
