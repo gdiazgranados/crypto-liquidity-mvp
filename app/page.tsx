@@ -42,6 +42,10 @@ export default function Home() {
 
   const copy = {
     EN: {
+      navCalculator: "Calculator",
+      navHow: "How it works",
+      navContact: "Contact",
+
       badge: "MVP · Liquidity Rail for Pond0x",
       heroTitle: "Convert USDC / USDT / USD into MXN in minutes",
       heroSubtitle:
@@ -162,6 +166,12 @@ export default function Home() {
         { value: "Lean OTC", label: "Small, simple and profitable operation" },
       ],
 
+      otcEyebrow: "Liquidity Desk",
+      otcTitle: "OTC Liquidity for Pond0x Users",
+      otcText:
+        "PondRail operates as a lean OTC-style liquidity desk designed to help Pond0x users move stablecoins into Mexican pesos efficiently.",
+      otcCards: ["🔒 Secure settlement", "⚡ Fast SPEI delivery", "🌎 Cross-border liquidity"],
+
       contactEyebrow: "Contact",
       contactTitle: "Request a quote to convert USDC into MXN",
       contactText:
@@ -173,6 +183,10 @@ export default function Home() {
     },
 
     ES: {
+      navCalculator: "Calculadora",
+      navHow: "Cómo funciona",
+      navContact: "Contacto",
+
       badge: "MVP · Rail de Liquidez para Pond0x",
       heroTitle: "Convierte USDC / USDT / USD a MXN en minutos",
       heroSubtitle:
@@ -293,6 +307,12 @@ export default function Home() {
         { value: "OTC Lean", label: "Operación pequeña, simple y rentable" },
       ],
 
+      otcEyebrow: "Mesa de Liquidez",
+      otcTitle: "Liquidez OTC para usuarios de Pond0x",
+      otcText:
+        "PondRail opera como una mesa de liquidez estilo OTC, diseñada para ayudar a usuarios de Pond0x a mover stablecoins a pesos mexicanos de forma eficiente.",
+      otcCards: ["🔒 Liquidación segura", "⚡ Entrega rápida vía SPEI", "🌎 Liquidez transfronteriza"],
+
       contactEyebrow: "Contacto",
       contactTitle: "Solicita una cotización para convertir USDC a MXN",
       contactText:
@@ -307,12 +327,39 @@ export default function Home() {
   const t = copy[lang]
 
   return (
-    <main className="min-h-screen bg-slate-950 text-white">
+    <main className="min-h-screen text-white bg-gradient-to-br from-slate-950 via-black to-slate-900">
+      <header className="sticky top-0 z-50 backdrop-blur bg-black/40 border-b border-white/10">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <Image
+              src="/logo.jpg"
+              alt="PondRail"
+              width={40}
+              height={40}
+              className="rounded-full"
+            />
+            <div className="font-semibold">PondRail</div>
+          </div>
+
+          <nav className="hidden md:flex gap-6 text-sm text-slate-300">
+            <a href="#calculator" className="hover:text-white">
+              {t.navCalculator}
+            </a>
+            <a href="#how" className="hover:text-white">
+              {t.navHow}
+            </a>
+            <a href="#contact" className="hover:text-white">
+              {t.navContact}
+            </a>
+          </nav>
+        </div>
+      </header>
+
       <section className="relative overflow-hidden border-b border-white/10">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.18),transparent_25%),radial-gradient(circle_at_bottom_left,rgba(16,185,129,0.16),transparent_28%),linear-gradient(to_bottom,rgba(15,23,42,0.95),rgba(2,6,23,1))]" />
 
         <div className="relative mx-auto max-w-7xl px-6 py-6 lg:px-10">
-          <header className="flex items-center justify-between gap-4">
+          <div className="flex items-center justify-between gap-4">
             <div className="flex items-center gap-4">
               <div className="overflow-hidden rounded-full shadow-[0_0_40px_rgba(34,211,238,0.25)]">
                 <Image
@@ -353,7 +400,7 @@ export default function Home() {
                 ES
               </button>
             </div>
-          </header>
+          </div>
 
           <div className="grid gap-12 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:py-20">
             <div>
@@ -566,7 +613,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-y border-white/10 bg-white/[0.03]">
+      <section id="how" className="border-y border-white/10 bg-white/[0.03]">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
           <div className="mb-10 max-w-2xl">
             <p className="text-sm font-medium uppercase tracking-[0.2em] text-emerald-300">
@@ -634,7 +681,21 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-t border-white/10 bg-slate-900/80">
+      <section className="mx-auto max-w-7xl px-6 py-20 lg:px-10 text-center">
+        <p className="text-cyan-400 text-sm mb-4">{t.otcEyebrow}</p>
+        <h2 className="text-3xl font-bold mb-6">{t.otcTitle}</h2>
+        <p className="max-w-2xl mx-auto text-slate-300 mb-10">{t.otcText}</p>
+
+        <div className="grid md:grid-cols-3 gap-6">
+          {t.otcCards.map((card) => (
+            <div key={card} className="bg-slate-900 border border-white/10 p-6 rounded-xl">
+              {card}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section id="contact" className="border-t border-white/10 bg-slate-900/80">
         <div className="mx-auto max-w-4xl px-6 py-20 text-center lg:px-10">
           <p className="text-sm font-medium uppercase tracking-[0.2em] text-cyan-300">
             {t.contactEyebrow}
