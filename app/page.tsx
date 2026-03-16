@@ -476,6 +476,31 @@ export default function Home() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.18),transparent_25%),radial-gradient(circle_at_bottom_left,rgba(16,185,129,0.16),transparent_28%),linear-gradient(to_bottom,rgba(15,23,42,0.95),rgba(2,6,23,1))]" />
 
         <div className="relative mx-auto max-w-7xl px-6 py-6 lg:px-10">
+               <div className="grid gap-4 py-8 sm:grid-cols-2 lg:grid-cols-4">
+  <div className="rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm">
+    <div className="text-sm text-slate-400">Liquidity Routed</div>
+    <div className="mt-2 text-2xl font-semibold text-cyan-300">$240k+</div>
+    <div className="mt-1 text-xs text-slate-500">Illustrative monthly capacity</div>
+  </div>
+
+  <div className="rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm">
+    <div className="text-sm text-slate-400">Avg Settlement</div>
+    <div className="mt-2 text-2xl font-semibold text-emerald-300">10–20 min</div>
+    <div className="mt-1 text-xs text-slate-500">Target for SPEI delivery</div>
+  </div>
+
+  <div className="rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm">
+    <div className="text-sm text-slate-400">Supported Assets</div>
+    <div className="mt-2 text-2xl font-semibold text-violet-300">USD / USDC / USDT</div>
+    <div className="mt-1 text-xs text-slate-500">Stablecoin-first settlement</div>
+  </div>
+
+  <div className="rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm">
+    <div className="text-sm text-slate-400">Active Corridor</div>
+    <div className="mt-2 text-2xl font-semibold text-amber-300">US ↔ MX</div>
+    <div className="mt-1 text-xs text-slate-500">Pond0x-focused liquidity rail</div>
+  </div>
+</div>
           <div className="grid gap-12 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:py-20">
             <div>
               <div className="mb-5 inline-flex items-center rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-1.5 text-sm text-cyan-200">
@@ -854,7 +879,61 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <section className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
+  <div className="text-center mb-14">
+    <p className="text-cyan-300 text-sm mb-3 uppercase tracking-widest">
+      Roadmap
+    </p>
+    <h2 className="text-3xl font-bold">
+      Building the Mexico Crypto Liquidity Rail
+    </h2>
+    <p className="text-slate-300 mt-4 max-w-2xl mx-auto">
+      PondRail begins as a lean MVP focused on Pond0x users and evolves
+      toward a full cross-border liquidity infrastructure between crypto
+      markets and Mexican pesos.
+    </p>
+  </div>
 
+  <div className="grid md:grid-cols-4 gap-6">
+
+    <div className="bg-slate-900 border border-white/10 rounded-xl p-6">
+      <div className="text-cyan-300 font-semibold mb-2">Phase 1</div>
+      <h3 className="font-bold mb-3">MVP Launch</h3>
+      <p className="text-sm text-slate-300">
+        Landing page, calculator, community onboarding and validation of
+        demand within the Pond0x ecosystem.
+      </p>
+    </div>
+
+    <div className="bg-slate-900 border border-white/10 rounded-xl p-6">
+      <div className="text-cyan-300 font-semibold mb-2">Phase 2</div>
+      <h3 className="font-bold mb-3">Recurring Liquidity</h3>
+      <p className="text-sm text-slate-300">
+        Build recurring operations with freelancers, agencies and OTC
+        traders needing stablecoin → MXN settlement.
+      </p>
+    </div>
+
+    <div className="bg-slate-900 border border-white/10 rounded-xl p-6">
+      <div className="text-cyan-300 font-semibold mb-2">Phase 3</div>
+      <h3 className="font-bold mb-3">MXN Corridor</h3>
+      <p className="text-sm text-slate-300">
+        Expand the liquidity rail between US crypto markets and Mexican
+        banking rails through SPEI.
+      </p>
+    </div>
+
+    <div className="bg-slate-900 border border-white/10 rounded-xl p-6">
+      <div className="text-cyan-300 font-semibold mb-2">Phase 4</div>
+      <h3 className="font-bold mb-3">Operator Settlement</h3>
+      <p className="text-sm text-slate-300">
+        Enable larger OTC settlement flows and operator-assisted
+        liquidity for higher volume clients.
+      </p>
+    </div>
+
+  </div>
+</section>
       <section id="contact" className="border-t border-white/10 bg-slate-900/80">
         <div className="mx-auto max-w-4xl px-6 py-20 text-center lg:px-10">
           <p className="text-sm font-medium uppercase tracking-[0.2em] text-cyan-300">
