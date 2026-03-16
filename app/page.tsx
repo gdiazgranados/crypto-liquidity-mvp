@@ -112,9 +112,13 @@ export default function Home() {
       grossLabel: "Gross conversion",
       spreadLabel: "Conversion spread / fee",
       networkLabel: "Network fee",
-      settlementCostLabel: "Settlement cost",
-      totalFeeLabel: "Total estimated fees",
+      settlementCostLabel: "Delivery cost",
+      totalFeeLabel: "Total estimated costs",
       netLabel: "Estimated MXN received",
+      netHelper:
+        "You will receive approximately this amount after all estimated costs.",
+      netSpeed: "Fast settlement",
+      netSpeedTime: "estimated 5–10 minutes",
       telegramBtn: "Request Quote on Telegram",
       calcDisclaimer:
         "Final quote depends on timing, amount, network and settlement method. This MVP displays an estimated simulation only.",
@@ -296,10 +300,14 @@ export default function Home() {
       rateLabel: "Tipo de cambio",
       grossLabel: "Conversión bruta",
       spreadLabel: "Spread / fee de conversión",
-      networkLabel: "Comisión de red",
-      settlementCostLabel: "Costo de liquidación",
-      totalFeeLabel: "Comisiones totales estimadas",
+      networkLabel: "Costo de red",
+      settlementCostLabel: "Costo de entrega",
+      totalFeeLabel: "Costos totales estimados",
       netLabel: "MXN estimado recibido",
+      netHelper:
+        "Recibirás aproximadamente esta cantidad después de todos los costos estimados.",
+      netSpeed: "Liquidación rápida",
+      netSpeedTime: "estimado 5–10 minutos",
       telegramBtn: "Solicitar cotización en Telegram",
       calcDisclaimer:
         "La cotización final depende del momento, monto, red y método de liquidación. Este MVP muestra solo una simulación estimada.",
@@ -701,10 +709,26 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div className="rounded-3xl border border-emerald-400/20 bg-emerald-400/10 p-5">
+                <div className="rounded-3xl border border-emerald-400/20 bg-emerald-400/10 p-6 space-y-3">
                   <div className="text-sm text-emerald-200">{t.netLabel}</div>
-                  <div className="mt-2 text-3xl font-semibold text-emerald-300">
-                    {quote.finalMxn.toFixed(2)} MXN
+
+                  <div className="text-3xl font-semibold text-emerald-300">
+                    {quote.finalMxn.toLocaleString("en-US", {
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                    })}{" "}
+                    MXN
+                  </div>
+
+                  <div className="text-xs text-emerald-100/80">
+                    {t.netHelper}
+                  </div>
+
+                  <div className="flex items-center gap-2 text-xs text-slate-300">
+                    <span className="px-2 py-1 rounded bg-cyan-500/10 border border-cyan-400/20 text-cyan-300">
+                      {t.netSpeed}
+                    </span>
+                    <span>{t.netSpeedTime}</span>
                   </div>
                 </div>
 
